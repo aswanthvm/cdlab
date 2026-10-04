@@ -1,0 +1,155 @@
+1. LEXICAL ANALYZER
+1. Start.
+2. Read the input until '#'.
+3. Ignore spaces, tabs and newlines.
+4. If the character is a letter:
+   a) Read letters and digits.
+   b) Form a word.
+   c) If the word is a keyword, print "Keyword".
+   d) Otherwise, print "Identifier".
+5. If the character is a digit:
+   a) Read all consecutive digits.
+   b) Print "Number".
+6. If the character is +, -, *, / or =, print "Operator".
+7. If the character is ;, ,, (, ), { or }, print "Special Symbol".
+8. Otherwise, print "Unknown".
+9. Repeat Steps 4 to 8 until '#'.
+10. Stop.
+
+2. FIND ε-CLOSURE OF ALL STATES
+1. Start.
+2. Read the number of states and ε-transition matrix.
+3. For each state:
+   a) Clear the visited array.
+   b) Mark the current state as visited.
+   c) Check its ε-transitions.
+   d) If an unvisited state is reached, find its ε-closure.
+4. Print all visited states as the ε-closure.
+5. Repeat Step 3 for all states.
+6. Stop.
+
+3. CONVERT NFA WITH ε-TRANSITION TO NFA WITHOUT ε-TRANSITION
+1. Start.
+2. Read the number of states.
+3. Read the ε-transition matrix.
+4. Read the transition matrix for input 'a'.
+5. Find the ε-closure of every state.
+6. For each state:
+   a) Take all states in its ε-closure.
+   b) Find the 'a' transitions from these states.
+   c) Combine all destination states.
+7. Print the new transitions.
+8. Repeat Step 6 for all states.
+9. Stop.
+
+4. CONVERT NFA TO DFA
+1. Start.
+2. Read the number of states and NFA transition matrix.
+3. Set the initial DFA state as {0}.
+4. For each unprocessed DFA state:
+   a) Take all NFA states present in it.
+   b) Find their destination states.
+   c) Combine the destination states.
+5. Check whether the new state already exists.
+6. If it is new, add it to the DFA states.
+7. Repeat Steps 4 to 6 until all states are processed.
+8. Print all DFA states.
+9. Stop.
+
+5. MINIMIZE A GIVEN DFA
+1. Start.
+2. Read the number of states and input symbols.
+3. Read the DFA transition table.
+4. Read the final/non-final status of each state.
+5. Initially divide the states into:
+   a) Final states.
+   b) Non-final states.
+6. Compare states in the same group.
+7. For each pair of states:
+   a) Check their transitions for every input symbol.
+   b) Compare the groups of their destination states.
+   c) If the groups are different, split the states.
+8. Repeat Step 6 until no group changes.
+9. Print the final groups.
+10. Stop.
+
+6. OPERATOR PRECEDENCE PARSER
+1. Start.
+2. Read the expression using 'i' for identifier.
+3. Push '$' onto the stack.
+4. Read the input from left to right.
+5. If the input is 'i':
+   a) Push 'i' onto the stack.
+   b) Move to the next input symbol.
+   c) Print "Shift".
+6. Otherwise compare operator precedence.
+7. If input operator has higher precedence:
+   a) Push the operator.
+   b) Move to the next input symbol.
+   c) Print "Shift".
+8. Otherwise:
+   a) Pop the stack.
+   b) Print "Reduce".
+9. After the input ends, reduce the remaining symbols.
+10. Print "Accepted".
+11. Stop.
+
+7. FIND FIRST AND FOLLOW
+1. Start.
+2. Read the grammar productions.
+3. Read the required non-terminal.
+4. Find FIRST:
+   a) If the symbol is a terminal, add it to FIRST.
+   b) If it is a non-terminal, find its productions.
+   c) Find FIRST of the first symbol of the production.
+5. Find FOLLOW:
+   a) If the symbol is the start symbol, add '$'.
+   b) Search for the symbol in all productions.
+   c) If a terminal follows it, add the terminal.
+   d) If a non-terminal follows it, add its FIRST.
+6. Print FIRST and FOLLOW.
+7. Stop.
+
+8. RECURSIVE DESCENT PARSER
+1. Start.
+2. Read the expression using 'i' for identifier.
+3. Set the input pointer to 0.
+4. Call E().
+5. In E():
+   a) Call T().
+   b) If the next symbol is '+', consume it.
+   c) Call E() again.
+6. In T():
+   a) If the symbol is 'i', consume it.
+   b) Otherwise, report "Invalid".
+7. Check whether the complete input is consumed.
+8. If yes, print "Accepted".
+9. Otherwise, print "Rejected".
+10. Stop.
+
+9. LEX PROGRAM TO ACCEPT/REJECT STRING CONTAINING "ASWA"
+1. Start.
+2. Read the input string.
+3. Check whether the string contains "ASWA".
+4. If "ASWA" is found:
+   a) Print "Rejected".
+5. Otherwise:
+   a) Print "Accepted".
+6. Stop.
+
+10. YACC PROGRAM TO RECOGNIZE A VALID VARIABLE
+1. Start.
+2. Read the variable using LEX.
+3. Check the first character.
+4. If the first character is a letter:
+   a) Check the remaining characters.
+   b) They must be letters or digits.
+   c) Return token ID.
+5. Pass the token to YACC.
+6. Check the grammar:
+   S → ID '\n'
+7. If the grammar is matched:
+   a) Print "Valid Variable".
+8. Otherwise:
+   a) Print "Invalid Variable".
+9. Stop.
